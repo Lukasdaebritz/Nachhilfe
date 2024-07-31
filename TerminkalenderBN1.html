@@ -20,9 +20,9 @@
     <div id="event-modal">
         <div class="modal-content">
             <h2>Termin hinzufügen</h2>
-            <input type="text" id="event-title" placeholder="Termin Titel">
-            <input type="time" id="event-start-time" placeholder="Von">
-            <input type="time" id="event-end-time" placeholder="Bis">
+            <input type="text" id="event-title" placeholder="Termin Titel" required>
+            <input type="time" id="event-start-time" placeholder="Von (optional)">
+            <input type="time" id="event-end-time" placeholder="Bis (optional)">
             <button id="save-event">Hinzufügen</button>
             <button id="cancel-event">Abbrechen</button>
         </div>
@@ -32,9 +32,9 @@
     <div id="edit-event-modal">
         <div class="modal-content">
             <h2>Termin bearbeiten</h2>
-            <input type="text" id="edit-event-title" placeholder="Neuer Termin Titel">
-            <input type="time" id="edit-event-start-time" placeholder="Von">
-            <input type="time" id="edit-event-end-time" placeholder="Bis">
+            <input type="text" id="edit-event-title" placeholder="Neuer Termin Titel" required>
+            <input type="time" id="edit-event-start-time" placeholder="Von (optional)">
+            <input type="time" id="edit-event-end-time" placeholder="Bis (optional)">
             <button id="update-event">Aktualisieren</button>
             <button id="delete-event">Löschen</button>
             <button id="cancel-edit-event">Abbrechen</button>
