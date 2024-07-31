@@ -1,35 +1,42 @@
-/* Bestehender CSS-Code */
+/* Allgemeine Schriftgrößenanpassung */
 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e3f2fd;
-    /* Gleiche Hintergrundfarbe wie auf der Dashboardseite */
+    background-color: #fff3e0;
+    /* Hintergrundfarbe im Orange-Stil */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container {
+    width: 100%;
     display: flex;
     justify-content: center;
-    /* Zentriert den Inhalt horizontal */
-    align-items: center;
-    /* Zentriert den Inhalt vertikal */
-    height: 100vh;
-    /* Vollständige Höhe des Viewports */
+    /* Zentriert den Header horizontal */
+    padding: 20px 0;
+    /* Abstand oben und unten hinzugefügt */
 }
 
 header {
-    background-color: #2196F3;
-    /* Gleiche Farbe wie auf der Dashboardseite */
+    background-color: #FF9800;
     color: white;
-    padding: 15px;
+    padding: 15px 30px;
     text-align: center;
-    border-bottom: 2px solid #1976D2;
-    /* Gleiche dunklere Farbe wie im Header der Dashboardseite */
+    border-bottom: 2px solid #F57C00;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 15px;
+    /* Abgerundete Ecken hinzugefügt */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Schatten hinzugefügt */
 }
 
 header h1 {
     margin: 0;
     font-size: 32px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
-    color: white;
 }
 
 main {
@@ -42,106 +49,78 @@ main {
 .content {
     width: 100%;
     max-width: 600px;
-    /* Maximale Breite für das Formular */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Gleicher Schatten wie bei der Dashboardseite */
     padding: 20px;
     margin-bottom: 20px;
 }
 
 h2 {
     margin-top: 0;
-    color: #2196F3;
-    /* Gleiche Farbe wie im Header der Dashboardseite */
+    color: #FF9800;
     font-size: 32px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
+    text-align: center;
 }
 
 label {
     display: block;
     margin: 10px 0 5px;
     color: #333;
-    /* Dunklere Farbe für bessere Lesbarkeit */
     font-size: 18px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
 }
 
 input[type="text"],
-input[type="file"],
-select {
+input[type="file"] {
     width: 100%;
     padding: 10px;
-    /* Größeres Innenpolster für Konsistenz */
     margin-bottom: 10px;
-    border: 2px solid #1976D2;
-    /* Gleicher Rahmen wie bei Buttons auf der Dashboardseite */
+    border: 2px solid #F57C00;
     border-radius: 8px;
-    /* Abgerundete Ecken */
     font-size: 18px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
 }
 
 button {
-    background-color: #2196F3;
-    /* Gleiche Farbe wie bei Buttons auf der Dashboardseite */
+    background-color: #FF9800;
     color: white;
-    border: 2px solid #1976D2;
-    /* Gleicher Rahmen wie bei Buttons auf der Dashboardseite */
+    border: 2px solid #F57C00;
     padding: 15px 30px;
-    /* Größere Polsterung für Konsistenz */
     margin-top: 10px;
     cursor: pointer;
     font-size: 20px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
     border-radius: 8px;
-    /* Abgerundete Ecken */
     width: 100%;
-    /* Die Buttons füllen die Breite des Containers */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Gleicher Schatten wie bei Buttons auf der Dashboardseite */
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #1976D2;
-    /* Dunkleres Blau beim Hover */
+    background-color: #F57C00;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    /* Intensiveren Schatten beim Hover */
 }
 
 button:active {
     transform: scale(0.98);
-    /* Knopf-Animation beim Klicken */
 }
 
 #backButton {
     background-color: #f44336;
-    /* Rot für den Zurück-Button */
     color: white;
     border: 2px solid #c62828;
-    /* Gleicher Rahmen wie bei anderen Buttons */
     padding: 15px 30px;
-    /* Gleiche Polsterung wie bei anderen Buttons */
     cursor: pointer;
     border-radius: 8px;
-    /* Abgerundete Ecken */
     font-size: 20px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
     width: 100%;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Gleicher Schatten wie bei Buttons auf der Dashboardseite */
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 #backButton:hover {
     background-color: #d32f2f;
-    /* Dunkleres Rot beim Hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    /* Intensiveren Schatten beim Hover */
 }
 
 #homeworkList {
@@ -152,50 +131,39 @@ button:active {
     margin-bottom: 10px;
     padding: 10px;
     border: 2px solid #ddd;
-    /* Gleicher Rahmen wie bei Buttons */
     border-radius: 8px;
-    /* Abgerundete Ecken */
     position: relative;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Leichter Schatten für die Homework-Elemente */
 }
 
 .homework-item a {
     display: block;
     margin-bottom: 5px;
     font-size: 18px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
 }
 
 .edit-btn,
 .delete-btn {
     display: none;
-    /* Standardmäßig versteckt */
     margin-top: 5px;
-    background-color: #2196F3;
-    /* Gleiche Farbe wie bei Buttons auf der Dashboardseite */
+    background-color: #FF9800;
     color: white;
-    border: 2px solid #1976D2;
-    /* Gleicher Rahmen wie bei Buttons auf der Dashboardseite */
+    border: 2px solid #F57C00;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 8px;
-    /* Abgerundete Ecken */
     font-size: 16px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
 }
 
 .edit-btn:hover,
 .delete-btn:hover {
-    background-color: #1976D2;
-    /* Dunkleres Blau beim Hover */
+    background-color: #F57C00;
 }
 
 .homework-item.show-actions .edit-btn,
 .homework-item.show-actions .delete-btn {
     display: inline-block;
-    /* Zeigt die Buttons nur an, wenn aktiv */
 }
 
 .edit-form {
@@ -203,9 +171,7 @@ button:active {
     margin-top: 10px;
     padding: 10px;
     border: 2px solid #ddd;
-    /* Gleicher Rahmen wie bei Buttons */
     border-radius: 8px;
-    /* Abgerundete Ecken */
     background-color: #f5f5f5;
 }
 
@@ -213,10 +179,7 @@ button:active {
     width: calc(100% - 20px);
     padding: 8px;
     margin-bottom: 10px;
-    border: 2px solid #1976D2;
-    /* Gleicher Rahmen wie bei anderen Eingabefeldern */
+    border: 2px solid #F57C00;
     border-radius: 8px;
-    /* Abgerundete Ecken */
     font-size: 18px;
-    /* Gleiche Schriftgröße wie bei der Noten hinzufügen Seite */
 }
