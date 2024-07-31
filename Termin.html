@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender</title>
+    <link rel="stylesheet" href="Termin.css">
+</head>
+<body>
+    <div class="calendar-container">
+        <h1>Kalender</h1>
+        <div id="calendar"></div>
+        <button id="prevMonth">Vorheriger Monat</button>
+        <button id="nextMonth">Nächster Monat</button>
+    </div>
+
+    <!-- Modal for adding/editing events -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Termin hinzufügen/bearbeiten</h2>
+            <form id="eventForm">
+                <label for="eventDate">Datum:</label>
+                <input type="text" id="eventDate" readonly>
+                <label for="eventStartTime">Beginn:</label>
+                <input type="time" id="eventStartTime" required>
+                <label for="eventEndTime">Ende:</label>
+                <input type="time" id="eventEndTime" required>
+                <label for="eventDescription">Beschreibung:</label>
+                <textarea id="eventDescription" required></textarea>
+                <button type="submit">Speichern</button>
+            </form>
+            <button id="deleteEvent">Termin löschen</button>
+        </div>
+    </div>
+
+    <script src="Termin.js"></script>
+</body>
+</html>

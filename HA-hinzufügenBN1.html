@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hausaufgaben hinzufügen</title>
+    <link rel="stylesheet" href="HA-hinzufügenBN1.css">
+</head>
+<body>
+    <header>
+        <h1>Hausaufgaben hinzufügen</h1>
+    </header>
+    <main>
+        <section class="content">
+            <div class="add-form">
+                <h2>Neue Hausaufgabe hinzufügen</h2>
+                <form id="homeworkForm">
+                    <label for="homeworkTitle">Titel:</label>
+                    <input type="text" id="homeworkTitle" name="homeworkTitle" required>
+                    <label for="homeworkFile">Datei hinzufügen:</label>
+                    <input type="file" id="homeworkFile" name="homeworkFile">
+                    <button type="submit">Hinzufügen</button>
+                </form>
+                <div id="homeworkList">
+                    <!-- Hier werden die hinzugefügten Hausaufgaben angezeigt -->
+                </div>
+            </div>
+        </section>
+        <section class="button-container">
+            <button id="backButton">Zurück zum Dashboard</button>
+        </section>
+    </main>
+    <script src="HA-hinzufügenBN1.js"></script>
+</body>
+</html>

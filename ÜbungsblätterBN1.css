@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#topicsContainer {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.topic {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.topic-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topic-title button {
+    display: none;
+    margin-left: 10px;
+}
+
+.topic:hover .topic-title button {
+    display: inline;
+}
+
+.topic-files {
+    margin-top: 10px;
+}
+
+.topic-files input[type="file"] {
+    display: none;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e9e9e9;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.file-item button {
+    display: none;
+    margin-left: 10px;
+}
+
+.file-item:hover button {
+    display: inline;
+}
+
+button.delete {
+    background-color: #f44336;
+}
+
+button.delete:hover {
+    background-color: #e41f1f;
+}
+
+button.edit {
+    background-color: #008CBA;
+}
+
+button.edit:hover {
+    background-color: #007BB5;
+}
+
+.file-item a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
