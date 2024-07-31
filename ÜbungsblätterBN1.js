@@ -13,8 +13,7 @@ document.getElementById('backButton').addEventListener('click', function() {
     window.location.href = 'DashboardBN1.html';
 });
 
-function addTopic(title) {
-    const topicId = 'topic-' + new Date().getTime();
+function addTopic(title, topicId = 'topic-' + new Date().getTime(), files = []) {
     const topicContainer = document.createElement('div');
     topicContainer.classList.add('topic');
     topicContainer.dataset.topicId = topicId;
@@ -33,6 +32,10 @@ function addTopic(title) {
         <div id="fileList-${topicId}"></div>
     `;
     document.getElementById('topicsContainer').appendChild(topicContainer);
+
+    files.forEach(file => {
+        addFileToDOM(topicId, file.name, file.url);
+    });
 }
 
 function addFileToTopic(input) {
@@ -40,21 +43,26 @@ function addFileToTopic(input) {
     const fileListContainer = document.getElementById(`fileList-${topicId}`);
     Array.from(input.files).forEach(file => {
         const fileURL = URL.createObjectURL(file);
-        const fileItem = document.createElement('div');
-        fileItem.classList.add('file-item');
-        fileItem.dataset.fileName = file.name;
-        fileItem.dataset.fileURL = fileURL;
-        fileItem.innerHTML = `
-            <span>${file.name}</span>
-            <div>
-                <a href="${fileURL}" download="${file.name}">Download</a>
-                <button class="edit" onclick="editFile(this); event.stopPropagation()">Bearbeiten</button>
-                <button class="delete" onclick="deleteFile(this); event.stopPropagation()">Löschen</button>
-            </div>
-        `;
-        fileListContainer.appendChild(fileItem);
+        addFileToDOM(topicId, file.name, fileURL);
     });
     saveTopics();
+}
+
+function addFileToDOM(topicId, fileName, fileURL) {
+    const fileListContainer = document.getElementById(`fileList-${topicId}`);
+    const fileItem = document.createElement('div');
+    fileItem.classList.add('file-item');
+    fileItem.dataset.fileName = fileName;
+    fileItem.dataset.fileURL = fileURL;
+    fileItem.innerHTML = `
+        <span>${fileName}</span>
+        <div>
+            <a href="${fileURL}" download="${fileName}">Download</a>
+            <button class="edit" onclick="editFile(this); event.stopPropagation()">Bearbeiten</button>
+            <button class="delete" onclick="deleteFile(this); event.stopPropagation()">Löschen</button>
+        </div>
+    `;
+    fileListContainer.appendChild(fileItem);
 }
 
 function editTopic(topicId) {
@@ -108,25 +116,7 @@ function saveTopics() {
 function loadTopics() {
     const topics = JSON.parse(localStorage.getItem('topicsBN1') || '[]');
     topics.forEach(topic => {
-        addTopic(topic.title);
-        topic.files.forEach(file => {
-            const fileListContainer = document.getElementById(`fileList-${topic.topicId}`);
-            if (fileListContainer) {
-                const fileItem = document.createElement('div');
-                fileItem.classList.add('file-item');
-                fileItem.dataset.fileName = file.name;
-                fileItem.dataset.fileURL = file.url;
-                fileItem.innerHTML = `
-                    <span>${file.name}</span>
-                    <div>
-                        <a href="${file.url}" download="${file.name}">Download</a>
-                        <button class="edit" onclick="editFile(this); event.stopPropagation()">Bearbeiten</button>
-                        <button class="delete" onclick="deleteFile(this); event.stopPropagation()">Löschen</button>
-                    </div>
-                `;
-                fileListContainer.appendChild(fileItem);
-            }
-        });
+        addTopic(topic.title, topic.topicId, topic.files);
     });
 }
 
