@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f4f7;
+    background-color: #fff3e0;
     color: #333;
     margin: 0;
     padding: 0;
@@ -58,6 +58,7 @@ body {
 
 button {
     cursor: pointer;
+    background-color: #424242;
     transition: transform 0.3s ease, background-color 0.3s ease;
     /* Smooth transition for hover effects */
 }
@@ -72,7 +73,7 @@ button {
 #cancel-edit-event {
     font-size: 1.5em;
     /* Schriftgröße angepasst */
-    color: #007bff;
+    color: #424242;
     background: none;
     border: none;
     padding: 8px;
@@ -87,7 +88,7 @@ button {
 #delete-event:hover,
 #cancel-event:hover,
 #cancel-edit-event:hover {
-    background-color: #0056b3;
+    background-color:#424242;;
     transform: scale(1.1);
     /* Vergrößert den Button */
 }
@@ -100,7 +101,7 @@ button {
 #delete-event,
 #cancel-event,
 #cancel-edit-event {
-    background-color: #007bff;
+    background-color: #424242;
     color: #ffffff;
     width: 100%;
     border: none;
@@ -113,7 +114,7 @@ button {
 #delete-event:hover,
 #cancel-event:hover,
 #cancel-edit-event:hover {
-    background-color: #0056b3;
+    background-color: #424242;
     transform: scale(1.1);
     /* Vergrößert den Button */
 }
@@ -125,7 +126,7 @@ button {
     text-align: center;
     font-size: 2em;
     font-weight: bold;
-    color: #007bff;
+    color: #424242;
     margin-bottom: 20px;
 }
 
@@ -133,12 +134,12 @@ button {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 1px;
-    background-color: #007bff;
+    background-color: #424242;
     color: #ffffff;
     font-size: 1em;
     font-weight: bold;
     text-align: center;
-    border-bottom: 2px solid #0056b3;
+    border-bottom: 2px solid #424242;
 }
 
 .calendar-header div {
@@ -153,7 +154,7 @@ button {
     grid-template-columns: repeat(7, 1fr);
     gap: 1px;
     background-color: #ffffff;
-    border: 1px solid #007bff;
+    border: 1px solid #424242;
     border-radius: 8px;
 }
 
@@ -179,35 +180,8 @@ button {
 
 .calendar-body div.current-day {
     background-color: #d3eaf8;
-    border: 2px solid #007bff;
+    border: 2px solid #424242;
     font-weight: bold;
-}
-
-
-/* Kleinere Boxen für Termintitel */
-
-.event-title {
-    font-size: 0.7em;
-    /* Etwas größere Schriftgröße */
-    color: #007bff;
-    margin: 2px 0;
-    /* Kleinerer Abstand zwischen Terminen */
-    padding: 2px 4px;
-    /* Noch kleinerer Innenabstand */
-    background-color: #e0e0e0;
-    /* Hintergrundfarbe für die Box */
-    border-radius: 4px;
-    /* Runde Ecken für die Box */
-    box-sizing: border-box;
-    width: 100%;
-    word-break: break-word;
-    /* Verhindert, dass lange Wörter aus dem Container herauslaufen */
-    display: block;
-    /* Block-Layout, um untereinander stehende Boxen zu ermöglichen */
-    overflow: hidden;
-    /* Verhindert, dass der Text über die Box hinausläuft */
-    line-height: 1.2em;
-    /* Reduziert den Zeilenabstand */
 }
 
 
@@ -241,7 +215,7 @@ button {
     width: calc(100% - 22px);
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid #007bff;
+    border: 1px solid #424242;
     font-size: 1em;
     margin-bottom: 10px;
 }
@@ -253,7 +227,7 @@ button {
     width: calc(100% - 22px);
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid #007bff;
+    border: 1px solid #424242;
     font-size: 1em;
     margin-bottom: 10px;
 }
@@ -263,7 +237,7 @@ button {
 #delete-event,
 #cancel-event,
 #cancel-edit-event {
-    background-color: #007bff;
+    background-color: #424242;
     color: #ffffff;
     border: none;
     padding: 10px;
@@ -279,7 +253,7 @@ button {
 #delete-event:hover,
 #cancel-event:hover,
 #cancel-edit-event:hover {
-    background-color: #0056b3;
+    background-color: #424242;
     transform: scale(1.1);
     /* Vergrößert den Button */
 }
@@ -288,9 +262,9 @@ button {
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: #007bff;
+    background-color: #424242;
     color: #ffffff;
-    border: none;
+    border-bottom: 2px solid white;
     padding: 10px;
     border-radius: 4px;
     cursor: pointer;
@@ -299,7 +273,23 @@ button {
 }
 
 #back-button:hover {
-    background-color: #0056b3;
+    background-color: #212121;
     transform: scale(1.1);
     /* Vergrößert den Button */
+}
+
+/* Terminboxen-Styles anpassen */
+.event-title {
+    font-size: 0.7em;
+    color: #424242;
+    margin: 2px 0;
+    padding: 2px 4px;
+    background-color: white; /* Hintergrundfarbe auf weiß setzen */
+    border-radius: 0; /* Eckenradius entfernen */
+    box-sizing: border-box;
+    width: 100%;
+    word-break: break-word;
+    display: block;
+    overflow: hidden;
+    line-height: 1.2em;
 }

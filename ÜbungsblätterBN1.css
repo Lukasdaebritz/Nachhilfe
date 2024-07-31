@@ -1,206 +1,181 @@
+/* Allgemeine Schriftgrößenanpassung */
+
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-    background-color: #e3f2fd;
-    /* Gleiche Hintergrundfarbe wie auf der Dashboardseite */
+    padding: 0;
+    background-color: #fff3e0;
+    /* Hintergrundfarbe im Orange-Stil */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.container {
-    width: 80%;
-    max-width: 600px;
-    background: white;
+
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: black;
+    /* Dunkelorange */
+}
+
+main {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
     border-radius: 8px;
-    /* Gleiche abgerundete Ecken wie auf der Dashboardseite */
+    /* Abgerundete Ecken */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Gleicher Schatten wie auf der Dashboardseite */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    color: black;
+    /* Dunkelorange */
+    font-size: 32px;
     text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 2em;
-    color: #2196F3;
-    /* Gleiche Farbe wie der Header auf der Dashboardseite */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+    font-size: 18px;
 }
 
-.input-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
+input[type="text"],
+input[type="file"] {
+    width: 100%;
     padding: 10px;
-    font-size: 16px;
-    /* Konsistent mit dem Dashboard */
-    border: 2px solid #1976D2;
-    /* Gleicher Rahmen wie bei den Buttons auf der Dashboardseite */
+    margin-bottom: 10px;
+    border: 2px solid #424242;
+    /* Dunkelorange */
     border-radius: 8px;
-    /* Abgerundete Ecken */
-    margin-right: 10px;
+    font-size: 18px;
 }
 
 button {
-    padding: 15px 30px;
-    /* Größere Polsterung wie bei den Buttons auf der Dashboardseite */
-    font-size: 16px;
-    /* Konsistent mit den Buttons auf der Dashboardseite */
+    background-color: #424242;
+    /* Dunkelgrau */
     color: white;
-    background-color: #2196F3;
-    /* Gleiche Farbe wie die Buttons auf der Dashboardseite */
-    border: 2px solid #1976D2;
-    /* Gleicher Rahmen wie bei den Buttons auf der Dashboardseite */
-    border-radius: 8px;
-    /* Abgerundete Ecken */
+    border: 2px solid white;
+    /* Weißer Rahmen */
+    padding: 15px 30px;
+    margin-top: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Gleicher Schatten wie bei den Buttons auf der Dashboardseite */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #1976D2;
-    /* Dunkleres Blau beim Hover */
+    background-color: #333333;
+    /* Etwas helleres Dunkelgrau */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    /* Intensiveren Schatten beim Hover */
 }
 
 button:active {
     transform: scale(0.98);
-    /* Knopf-Animation beim Klicken */
 }
 
-#topicsContainer {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.topic {
-    background-color: #ffffff;
-    /* Weißer Hintergrund für bessere Lesbarkeit */
-    padding: 15px;
-    border: 2px solid #ddd;
-    /* Gleicher Rahmen wie bei Buttons */
-    border-radius: 8px;
-    /* Abgerundete Ecken */
-    margin-bottom: 10px;
-    position: relative;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Leichter Schatten für die Themen */
-}
-
-.topic-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #333;
-    /* Dunklere Farbe für bessere Lesbarkeit */
-}
-
-.topic-title button {
-    display: none;
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: #2196F3;
-    /* Gleiche Farbe wie bei Buttons */
+#backButton {
+    background-color: #212121;
+    /* Rot für den Zurück-Button */
     color: white;
-    border: 2px solid #1976D2;
-    /* Gleicher Rahmen wie bei Buttons */
-    border-radius: 8px;
-    /* Abgerundete Ecken */
+    border: 2px solid white;
+    /* Weißer Rahmen */
+    padding: 15px 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Gleicher Schatten wie bei Buttons */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.topic-title button:hover {
-    background-color: #1976D2;
-    /* Dunkleres Blau beim Hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    /* Intensiveren Schatten beim Hover */
-}
-
-.topic:hover .topic-title button {
-    display: inline;
-}
-
-.topic-files {
-    margin-top: 10px;
-}
-
-.topic-files input[type="file"] {
-    display: none;
-}
-
-.file-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    /* Weißer Hintergrund für bessere Lesbarkeit */
-    padding: 10px;
-    border: 2px solid #ddd;
-    /* Gleicher Rahmen wie bei den Buttons */
-    border-radius: 8px;
-    /* Abgerundete Ecken */
-    margin-top: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Leichter Schatten für die Dateien */
-}
-
-.file-item button {
-    display: none;
-    margin-left: 10px;
-    padding: 5px 10px;
-    border-radius: 8px;
-    /* Abgerundete Ecken */
-}
-
-.file-item:hover button {
-    display: inline;
-}
-
-button.delete {
-    background-color: #f44336;
-    /* Rot für den Löschen-Button */
-    color: white;
-    border: 2px solid #c62828;
-    /* Gleicher Rahmen wie bei den anderen Buttons */
-}
-
-button.delete:hover {
-    background-color: #d32f2f;
+#backButton:hover {
+    background-color: #212121;
     /* Dunkleres Rot beim Hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    /* Intensiveren Schatten beim Hover */
 }
 
-button.edit {
-    background-color: #008CBA;
-    /* Blau für den Bearbeiten-Button */
+#homeworkList {
+    margin-top: 20px;
+}
+
+.homework-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    position: relative;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.homework-item a {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.edit-btn,
+.delete-btn {
+    display: none;
+    margin-top: 5px;
+    background-color: #424242;
+    /* Dunkelgrau */
     color: white;
-    border: 2px solid #007BB5;
-    /* Gleicher Rahmen wie bei den anderen Buttons */
+    border: 2px solid white;
+    /* Weißer Rahmen */
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
 }
 
-button.edit:hover {
-    background-color: #007BB5;
-    /* Dunkleres Blau beim Hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    /* Intensiveren Schatten beim Hover */
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #333333;
+    /* Etwas helleres Dunkelgrau */
 }
 
-.file-item a {
-    text-decoration: none;
-    color: #333;
-    /* Dunklere Farbe für bessere Lesbarkeit */
-    font-weight: bold;
+.homework-item.show-actions .edit-btn,
+.homework-item.show-actions .delete-btn {
+    display: inline-block;
+}
+
+.edit-form {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    background-color: #f5f5f5;
+}
+
+.edit-form input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 2px solid #F57C00;
+    /* Dunkelorange */
+    border-radius: 8px;
+    font-size: 18px;
 }

@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="ÜbungsblätterBN1.css">
     <title>Übungsblätter</title>
+    <link rel="stylesheet" href="ÜbungsblätterBN1.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Übungsblätter</h1>
-        <div class="input-container">
-            <input type="text" id="topicInput" placeholder="Neues Thema hinzufügen">
-            <button id="addTopicButton">Thema hinzufügen</button>
-        </div>
-        <div id="topicsContainer"></div>
-        <button id="backButton">Zurück</button>
+    <div class="header-container">
+        <header>
+            
+        </header>
     </div>
+    <main>
+        <section class="content">
+            <div class="add-form">
+                <h2>Übungsblätter</h2>
+                <form id="homeworkForm">
+                    <label for="homeworkTitle">Titel:</label>
+                    <input type="text" id="homeworkTitle" name="homeworkTitle" required>
+                    <label for="homeworkFile">Datei hinzufügen:</label>
+                    <input type="file" id="homeworkFile" name="homeworkFile">
+                    <button type="submit">Hinzufügen</button>
+                </form>
+                <div id="homeworkList">
+                    <!-- Hier werden die hinzugefügten Hausaufgaben angezeigt -->
+                </div>
+            </div>
+        </section>
+        <section class="button-container">
+            <button id="backButton">Zurück</button>
+        </section>
+    </main>
     <script src="ÜbungsblätterBN1.js"></script>
 </body>
+
 </html>

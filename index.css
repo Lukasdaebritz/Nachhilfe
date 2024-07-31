@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #e3f2fd;
+    background-color: #fff3e0;
     /* Gleiche Hintergrundfarbe wie Dashboard */
     margin: 0;
     padding: 20px;
@@ -20,7 +20,7 @@ body {
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #2196F3;
+    color: #FF9800;
     /* Gleiche Farbe wie Header auf Dashboard */
 }
 
@@ -29,7 +29,7 @@ input {
     padding: 15px;
     /* Größere Polsterung für Konsistenz */
     margin: 10px 0;
-    border: 2px solid #1976D2;
+    border: 2px solid #212121;
     /* Rahmen wie bei den Buttons */
     border-radius: 8px;
     /* Abgerundete Ecken für Konsistenz */
@@ -39,7 +39,7 @@ input {
 }
 
 input:focus {
-    border-color: #2196F3;
+    border-color: #212121;
     /* Gleiche Farbe wie Header auf Dashboard */
     outline: none;
 }
@@ -47,13 +47,13 @@ input:focus {
 button {
     width: 100%;
     padding: 15px;
-    border: 2px solid #1976D2;
+    border: 2px solid white;
     /* Rahmen wie bei Buttons */
     border-radius: 8px;
     /* Abgerundete Ecken */
     font-size: 18px;
     cursor: pointer;
-    background-color: #2196F3;
+    background-color: #424242;
     /* Gleiche Farbe wie auf Dashboard */
     color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -62,7 +62,7 @@ button {
 }
 
 button:hover {
-    background-color: #1976D2;
+    background-color: #212121;
     /* Dunkleres Blau beim Hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     /* Intensiveren Schatten beim Hover */

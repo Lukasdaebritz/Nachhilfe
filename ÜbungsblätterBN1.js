@@ -1,133 +1,87 @@
-document.getElementById('addTopicButton').addEventListener('click', function() {
-    const topicInput = document.getElementById('topicInput').value.trim();
-    if (topicInput) {
-        addTopic(topicInput);
-        document.getElementById('topicInput').value = '';
-        saveTopics();
-    } else {
-        alert('Bitte geben Sie ein Thema ein.');
-    }
-});
+document.addEventListener('DOMContentLoaded', function() {
+    const homeworkForm = document.getElementById('homeworkForm');
+    const homeworkList = document.getElementById('homeworkList');
+    const backButton = document.getElementById('backButton');
 
-document.getElementById('backButton').addEventListener('click', function() {
-    window.location.href = 'DashboardBN1.html';
-});
+    // Funktion zum Hinzufügen von Hausaufgaben
+    homeworkForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Verhindert das Standard-Formularverhalten
 
-function addTopic(title) {
-    const topicId = 'topic-' + new Date().getTime();
-    const topicContainer = document.createElement('div');
-    topicContainer.classList.add('topic');
-    topicContainer.dataset.topicId = topicId;
-    topicContainer.innerHTML = `
-        <div class="topic-title">
-            <span>${title}</span>
-            <div>
-                <button class="edit" onclick="editTopic('${topicId}'); event.stopPropagation()">Bearbeiten</button>
-                <button class="delete" onclick="deleteTopic('${topicId}'); event.stopPropagation()">Löschen</button>
-            </div>
-        </div>
-        <div class="topic-files">
-            <button onclick="document.getElementById('fileInput-${topicId}').click()">Datei hinzufügen</button>
-            <input type="file" id="fileInput-${topicId}" data-topic-id="${topicId}" onchange="addFileToTopic(this)" multiple>
-        </div>
-        <div id="fileList-${topicId}"></div>
-    `;
-    document.getElementById('topicsContainer').appendChild(topicContainer);
-}
+        const title = document.getElementById('homeworkTitle').value;
+        const file = document.getElementById('homeworkFile').files[0];
 
-function addFileToTopic(input) {
-    const topicId = input.dataset.topicId;
-    const fileListContainer = document.getElementById(`fileList-${topicId}`);
-    Array.from(input.files).forEach(file => {
-        const fileURL = URL.createObjectURL(file);
-        const fileItem = document.createElement('div');
-        fileItem.classList.add('file-item');
-        fileItem.dataset.fileName = file.name;
-        fileItem.dataset.fileURL = fileURL;
-        fileItem.innerHTML = `
-            <span>${file.name}</span>
-            <div>
-                <a href="${fileURL}" download="${file.name}">Download</a>
-                <button class="edit" onclick="editFile(this); event.stopPropagation()">Bearbeiten</button>
-                <button class="delete" onclick="deleteFile(this); event.stopPropagation()">Löschen</button>
+        if (title && file) {
+            const fileURL = URL.createObjectURL(file);
+            addHomeworkToDOM(title, fileURL, file.name);
+            saveHomeworks(); // Speichert die Hausaufgaben im Local Storage
+            homeworkForm.reset();
+        }
+    });
+
+    // Funktion zum Hinzufügen von Hausaufgaben zum DOM
+    function addHomeworkToDOM(title, fileURL, fileName) {
+        const listItem = document.createElement('div');
+        listItem.classList.add('homework-item');
+        listItem.innerHTML = `
+            <p><strong>${title}</strong></p>
+            <a href="${fileURL}" download="${fileName}">Dokument herunterladen</a>
+            <button class="edit-btn">Bearbeiten</button>
+            <button class="delete-btn">Löschen</button>
+            <div class="edit-form">
+                <label for="editTitle">Neuer Titel:</label>
+                <input type="text" class="edit-title" value="${title}">
+                <button class="save-btn">Speichern</button>
             </div>
         `;
-        fileListContainer.appendChild(fileItem);
-    });
-    saveTopics();
-}
-
-function editTopic(topicId) {
-    const topicTitleElement = document.querySelector(`.topic[data-topic-id="${topicId}"] .topic-title span`);
-    const newTitle = prompt('Bearbeiten Sie das Thema:', topicTitleElement.textContent.trim());
-    if (newTitle) {
-        topicTitleElement.textContent = newTitle;
-        saveTopics();
+        homeworkList.appendChild(listItem);
     }
-}
 
-function deleteTopic(topicId) {
-    const topicElement = document.querySelector(`.topic[data-topic-id="${topicId}"]`);
-    topicElement.remove();
-    saveTopics();
-}
+    // Funktion zum Zurückkehren zur Dashboard-Seite
+    backButton.addEventListener('click', function() {
+        window.location.href = 'DashboardBN1.html'; // Ersetze dies durch den Pfad zur Dashboard-Seite
+    });
 
-function editFile(button) {
-    const fileItem = button.parentElement.parentElement;
-    const newFileName = prompt('Bearbeiten Sie den Dateinamen:', fileItem.querySelector('span').textContent.trim());
-    if (newFileName) {
-        fileItem.querySelector('span').textContent = newFileName;
-        fileItem.dataset.fileName = newFileName;
-        saveTopics();
+    // Event-Delegation für Bearbeiten und Löschen
+    homeworkList.addEventListener('click', function(event) {
+        const target = event.target;
+        const item = target.closest('.homework-item');
+
+        if (target.classList.contains('delete-btn')) {
+            item.remove();
+            saveHomeworks(); // Aktualisiert den Local Storage
+        } else if (target.classList.contains('edit-btn')) {
+            const editForm = item.querySelector('.edit-form');
+            editForm.style.display = 'block'; // Zeigt das Bearbeitungsformular an
+        } else if (target.classList.contains('save-btn')) {
+            const newTitle = item.querySelector('.edit-title').value;
+            item.querySelector('strong').textContent = newTitle;
+            item.querySelector('.edit-form').style.display = 'none'; // Versteckt das Bearbeitungsformular
+            saveHomeworks(); // Speichert die Änderungen im Local Storage
+        } else if (item) {
+            // Zeigt die Bearbeiten- und Löschen-Buttons nur für das angeklickte Element
+            item.classList.toggle('show-actions');
+        }
+    });
+
+    // Funktion zum Speichern von Hausaufgaben im Local Storage
+    function saveHomeworks() {
+        const homeworks = [];
+        document.querySelectorAll('.homework-item').forEach(item => {
+            const title = item.querySelector('strong').textContent;
+            const fileURL = item.querySelector('a').getAttribute('href');
+            const fileName = item.querySelector('a').getAttribute('download');
+            homeworks.push({ title, fileURL, fileName });
+        });
+        localStorage.setItem('homeworks', JSON.stringify(homeworks));
     }
-}
 
-function deleteFile(button) {
-    const fileItem = button.parentElement.parentElement;
-    fileItem.remove();
-    saveTopics();
-}
-
-function saveTopics() {
-    const topics = [];
-    document.querySelectorAll('.topic').forEach(topic => {
-        const topicId = topic.dataset.topicId;
-        const title = topic.querySelector('.topic-title span').textContent.trim();
-        const files = [];
-        topic.querySelectorAll('.file-item').forEach(fileItem => {
-            files.push({
-                name: fileItem.dataset.fileName,
-                url: fileItem.dataset.fileURL
-            });
+    // Funktion zum Laden von Hausaufgaben aus dem Local Storage
+    function loadHomeworks() {
+        const homeworks = JSON.parse(localStorage.getItem('homeworks')) || [];
+        homeworks.forEach(hw => {
+            addHomeworkToDOM(hw.title, hw.fileURL, hw.fileName);
         });
-        topics.push({ topicId, title, files });
-    });
-    localStorage.setItem('topicsBN1', JSON.stringify(topics));
-}
+    }
 
-function loadTopics() {
-    const topics = JSON.parse(localStorage.getItem('topicsBN1') || '[]');
-    topics.forEach(topic => {
-        addTopic(topic.title);
-        topic.files.forEach(file => {
-            const fileListContainer = document.getElementById(`fileList-${topic.topicId}`);
-            if (fileListContainer) {
-                const fileItem = document.createElement('div');
-                fileItem.classList.add('file-item');
-                fileItem.dataset.fileName = file.name;
-                fileItem.dataset.fileURL = file.url;
-                fileItem.innerHTML = `
-                    <span>${file.name}</span>
-                    <div>
-                        <a href="${file.url}" download="${file.name}">Download</a>
-                        <button class="edit" onclick="editFile(this); event.stopPropagation()">Bearbeiten</button>
-                        <button class="delete" onclick="deleteFile(this); event.stopPropagation()">Löschen</button>
-                    </div>
-                `;
-                fileListContainer.appendChild(fileItem);
-            }
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', loadTopics);
+    loadHomeworks(); // Lädt die Hausaufgaben beim Start
+});
