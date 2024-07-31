@@ -5,7 +5,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f9f9f9;
+    background-color: #e3f2fd;
+    /* Gleiche Hintergrundfarbe wie auf der Dashboardseite */
 }
 
 .container {
@@ -13,15 +14,18 @@ body {
     max-width: 600px;
     background: white;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 8px;
+    /* Gleiche abgerundete Ecken wie auf der Dashboardseite */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Gleicher Schatten wie auf der Dashboardseite */
     text-align: center;
 }
 
 h1 {
     margin-bottom: 20px;
     font-size: 2em;
-    color: #333;
+    color: #2196F3;
+    /* Gleiche Farbe wie der Header auf der Dashboardseite */
 }
 
 .input-container {
@@ -32,25 +36,43 @@ h1 {
 
 input[type="text"] {
     padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    font-size: 16px;
+    /* Konsistent mit dem Dashboard */
+    border: 2px solid #1976D2;
+    /* Gleicher Rahmen wie bei den Buttons auf der Dashboardseite */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
     margin-right: 10px;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 1em;
+    padding: 15px 30px;
+    /* Größere Polsterung wie bei den Buttons auf der Dashboardseite */
+    font-size: 16px;
+    /* Konsistent mit den Buttons auf der Dashboardseite */
     color: white;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 5px;
+    background-color: #2196F3;
+    /* Gleiche Farbe wie die Buttons auf der Dashboardseite */
+    border: 2px solid #1976D2;
+    /* Gleicher Rahmen wie bei den Buttons auf der Dashboardseite */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Gleicher Schatten wie bei den Buttons auf der Dashboardseite */
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #1976D2;
+    /* Dunkleres Blau beim Hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Intensiveren Schatten beim Hover */
+}
+
+button:active {
+    transform: scale(0.98);
+    /* Knopf-Animation beim Klicken */
 }
 
 #topicsContainer {
@@ -59,23 +81,50 @@ button:hover {
 }
 
 .topic {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #ffffff;
+    /* Weißer Hintergrund für bessere Lesbarkeit */
+    padding: 15px;
+    border: 2px solid #ddd;
+    /* Gleicher Rahmen wie bei Buttons */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
     margin-bottom: 10px;
     position: relative;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Leichter Schatten für die Themen */
 }
 
 .topic-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #333;
+    /* Dunklere Farbe für bessere Lesbarkeit */
 }
 
 .topic-title button {
     display: none;
     margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #2196F3;
+    /* Gleiche Farbe wie bei Buttons */
+    color: white;
+    border: 2px solid #1976D2;
+    /* Gleicher Rahmen wie bei Buttons */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Gleicher Schatten wie bei Buttons */
+}
+
+.topic-title button:hover {
+    background-color: #1976D2;
+    /* Dunkleres Blau beim Hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Intensiveren Schatten beim Hover */
 }
 
 .topic:hover .topic-title button {
@@ -94,16 +143,25 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e9e9e9;
-    padding: 5px 10px;
-    border-radius: 5px;
+    background-color: #ffffff;
+    /* Weißer Hintergrund für bessere Lesbarkeit */
+    padding: 10px;
+    border: 2px solid #ddd;
+    /* Gleicher Rahmen wie bei den Buttons */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
     margin-top: 5px;
     cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Leichter Schatten für die Dateien */
 }
 
 .file-item button {
     display: none;
     margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
 }
 
 .file-item:hover button {
@@ -112,22 +170,37 @@ button:hover {
 
 button.delete {
     background-color: #f44336;
+    /* Rot für den Löschen-Button */
+    color: white;
+    border: 2px solid #c62828;
+    /* Gleicher Rahmen wie bei den anderen Buttons */
 }
 
 button.delete:hover {
-    background-color: #e41f1f;
+    background-color: #d32f2f;
+    /* Dunkleres Rot beim Hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Intensiveren Schatten beim Hover */
 }
 
 button.edit {
     background-color: #008CBA;
+    /* Blau für den Bearbeiten-Button */
+    color: white;
+    border: 2px solid #007BB5;
+    /* Gleicher Rahmen wie bei den anderen Buttons */
 }
 
 button.edit:hover {
     background-color: #007BB5;
+    /* Dunkleres Blau beim Hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Intensiveren Schatten beim Hover */
 }
 
 .file-item a {
     text-decoration: none;
     color: #333;
+    /* Dunklere Farbe für bessere Lesbarkeit */
     font-weight: bold;
 }

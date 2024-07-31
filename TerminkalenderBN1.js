@@ -69,7 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (events[dateString]) {
                 events[dateString].forEach(event => {
                     const eventTitle = document.createElement('div');
-                    eventTitle.textContent = `${event.title} (${event.startTime} - ${event.endTime})`;
+                    eventTitle.textContent = event.title;
+                    if (event.startTime && event.endTime) {
+                        eventTitle.textContent += ` (${event.startTime} - ${event.endTime})`;
+                    }
                     eventTitle.classList.add('event-title');
                     eventTitle.addEventListener('click', (e) => {
                         e.stopPropagation(); // Verhindert das Öffnen des Modals beim Klicken auf den Termin
@@ -93,11 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = eventTitleInput.value.trim();
         const startTime = eventStartTimeInput.value.trim();
         const endTime = eventEndTimeInput.value.trim();
-        if (title && startTime && endTime) {
+        if (title) {
+            const event = { title, startTime: startTime || null, endTime: endTime || null };
             if (!events[currentEditDate]) {
                 events[currentEditDate] = [];
             }
-            events[currentEditDate].push({ title, startTime, endTime });
+            events[currentEditDate].push(event);
             localStorage.setItem('events', JSON.stringify(events));
             eventTitleInput.value = '';
             eventStartTimeInput.value = '';
@@ -110,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const openEditEventModal = (dateString, event) => {
         currentEditDate = dateString;
         editEventTitleInput.value = event.title;
-        editEventStartTimeInput.value = event.startTime;
-        editEventEndTimeInput.value = event.endTime;
+        editEventStartTimeInput.value = event.startTime || '';
+        editEventEndTimeInput.value = event.endTime || '';
         currentEditIndex = events[dateString].indexOf(event);
         editEventModal.style.display = 'flex';
     };
@@ -120,8 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const newTitle = editEventTitleInput.value.trim();
         const newStartTime = editEventStartTimeInput.value.trim();
         const newEndTime = editEventEndTimeInput.value.trim();
-        if (newTitle && newStartTime && newEndTime) {
-            events[currentEditDate][currentEditIndex] = { title: newTitle, startTime: newStartTime, endTime: newEndTime };
+        if (newTitle) {
+            events[currentEditDate][currentEditIndex] = { title: newTitle, startTime: newStartTime || null, endTime: newEndTime || null };
             localStorage.setItem('events', JSON.stringify(events));
             editEventTitleInput.value = '';
             editEventStartTimeInput.value = '';
@@ -171,6 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'DashboardBN1.html';
     });
 
-    // Initiale Kalenderdarstellung
+    // Initiale Kalenderdarstellung mit Verzögerung
+    setTimeout(() => {
+        calendarContainer.classList.add('show');
+    }, 500); // Verzögerung in Millisekunden
+
     renderCalendar();
 });

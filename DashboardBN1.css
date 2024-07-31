@@ -1,16 +1,18 @@
+/* Bestehender CSS-Code */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e3f2fd; /* Heller Blau-Hintergrund */
+    background-color: #e3f2fd;
 }
 
 header {
-    background-color: #2196F3; /* Blau */
+    background-color: #2196F3;
     color: white;
     padding: 15px;
     text-align: center;
-    border-bottom: 2px solid #1976D2; /* Dunkleres Blau für den Header-Rand */
+    border-bottom: 2px solid #1976D2;
 }
 
 header h1 {
@@ -22,7 +24,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 100px); /* Höhe anpassen, um Platz für Footer zu schaffen */
+    height: calc(100vh - 100px);
     padding: 20px;
 }
 
@@ -30,24 +32,36 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px; /* Die Breite der Button-Container */
+    width: 350px;
+    /* Breite leicht erhöht, um größere Buttons zu unterstützen */
 }
 
 button {
-    background-color: #2196F3; /* Blau */
+    background-color: #2196F3;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
+    border: 2px solid #1976D2;
+    /* Rahmen hinzufügen */
+    padding: 15px 30px;
+    /* Größere Polsterung für größere Buttons */
+    margin: 15px 0;
+    /* Größerer Abstand zwischen den Buttons */
     cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 100%; /* Die Buttons füllen die Breite des Containers */
+    font-size: 18px;
+    /* Größere Schriftgröße für bessere Lesbarkeit */
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    width: 100%;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Schatten hinzufügen */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #1976D2; /* Dunkleres Blau */
+    background-color: #1976D2;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Intensiveren Schatten beim Hover */
 }
 
 footer {
@@ -61,16 +75,25 @@ footer {
 }
 
 #logoutButton {
-    background-color: #f44336; /* Rot für den Abmelde-Button */
+    background-color: #f44336;
     color: white;
-    border: none;
-    padding: 10px 20px;
+    border: 2px solid #c62828;
+    /* Rahmen für Logout-Button */
+    padding: 15px 30px;
+    /* Gleiche Polsterung wie andere Buttons */
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 150px;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    font-size: 18px;
+    /* Größere Schriftgröße */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Schatten hinzufügen */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #logoutButton:hover {
-    background-color: #d32f2f; /* Dunkleres Rot */
+    background-color: #d32f2f;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Intensiveren Schatten beim Hover */
 }

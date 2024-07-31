@@ -1,21 +1,125 @@
 /* Allgemeine Kalender-Styles */
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f0f4f7;
     color: #333;
     margin: 0;
     padding: 0;
+    background-image: url('math-background.png');
+    /* Hintergrundbild für Mathematik */
+    background-size: cover;
+    /* Das Bild wird auf die gesamte Fläche angepasst */
+    background-attachment: fixed;
+    /* Hintergrund bleibt beim Scrollen fixiert */
+    background-position: center center;
+    /* Bild zentrieren */
+    background-repeat: no-repeat;
+    /* Bild nicht wiederholen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Vollbild-Höhe */
 }
+
+
+/* Kalender-Container mit Animation */
 
 #calendar-container {
     max-width: 1200px;
-    margin: 20px auto;
+    width: 100%;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
+    box-sizing: border-box;
+    /* Verhindert, dass das Padding die Breite des Containers beeinflusst */
+    opacity: 0;
+    /* Initial unsichtbar */
+    transform: scale(0.95);
+    /* Kleinere Anfangsgröße */
+    transition: opacity 1s ease, transform 1s ease;
+    /* Übergangs-Effekte */
 }
+
+
+/* Klasse für die sichtbare Animation */
+
+#calendar-container.show {
+    opacity: 1;
+    transform: scale(1);
+    /* Zur ursprünglichen Größe zurückkehren */
+}
+
+
+/* Die Schaltflächen-Stile */
+
+button {
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Smooth transition for hover effects */
+}
+
+#prev-month,
+#next-month,
+#back-button,
+#save-event,
+#update-event,
+#delete-event,
+#cancel-event,
+#cancel-edit-event {
+    font-size: 1.5em;
+    /* Schriftgröße angepasst */
+    color: #007bff;
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+#prev-month:hover,
+#next-month:hover,
+#back-button:hover,
+#save-event:hover,
+#update-event:hover,
+#delete-event:hover,
+#cancel-event:hover,
+#cancel-edit-event:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+    /* Vergrößert den Button */
+}
+
+
+/* Spezielle Stile für Buttons im Modal */
+
+#save-event,
+#update-event,
+#delete-event,
+#cancel-event,
+#cancel-edit-event {
+    background-color: #007bff;
+    color: #ffffff;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#save-event:hover,
+#update-event:hover,
+#delete-event:hover,
+#cancel-event:hover,
+#cancel-edit-event:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+    /* Vergrößert den Button */
+}
+
+
+/* Kalender Header */
 
 #month-year {
     text-align: center;
@@ -23,19 +127,6 @@ body {
     font-weight: bold;
     color: #007bff;
     margin-bottom: 20px;
-}
-
-#prev-month, #next-month {
-    cursor: pointer;
-    font-size: 2em;
-    color: #007bff;
-    margin: 0 10px;
-    border: none;
-    background: none;
-}
-
-#prev-month:hover, #next-month:hover {
-    color: #0056b3;
 }
 
 .calendar-header {
@@ -54,6 +145,9 @@ body {
     padding: 10px;
 }
 
+
+/* Kalender Body */
+
 .calendar-body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -64,13 +158,19 @@ body {
 }
 
 .calendar-body div {
-    padding: 20px;
+    padding: 5px;
+    /* Reduzierter Innenabstand für kompaktere Felder */
     text-align: center;
     cursor: pointer;
     position: relative;
-    height: 120px; /* Vergrößert die Höhe für bessere Lesbarkeit */
-    border: 1px solid #e0e0e0; /* Leichter grauer Rahmen für bessere Unterscheidung */
+    height: 100px;
+    /* Höhe für kompakte Darstellung */
+    border: 1px solid #e0e0e0;
     box-sizing: border-box;
+    overflow-y: auto;
+    /* Ermöglicht das Scrollen innerhalb des Feldes */
+    overflow-x: hidden;
+    /* Verhindert horizontales Scrollen */
 }
 
 .calendar-body div:hover {
@@ -83,22 +183,38 @@ body {
     font-weight: bold;
 }
 
+
+/* Kleinere Boxen für Termintitel */
+
 .event-title {
-    position: absolute;
-    bottom: 5px;
-    left: 5px;
-    right: 5px;
-    font-size: 0.8em;
+    font-size: 0.7em;
+    /* Etwas größere Schriftgröße */
     color: #007bff;
+    margin: 2px 0;
+    /* Kleinerer Abstand zwischen Terminen */
+    padding: 2px 4px;
+    /* Noch kleinerer Innenabstand */
+    background-color: #e0e0e0;
+    /* Hintergrundfarbe für die Box */
+    border-radius: 4px;
+    /* Runde Ecken für die Box */
+    box-sizing: border-box;
+    width: 100%;
+    word-break: break-word;
+    /* Verhindert, dass lange Wörter aus dem Container herauslaufen */
+    display: block;
+    /* Block-Layout, um untereinander stehende Boxen zu ermöglichen */
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-        background-color: transparent; /* Entfernt den grauen Hintergrund */
-        border: none; /* Entfernt den grauen Rahmen */
-    
+    /* Verhindert, dass der Text über die Box hinausläuft */
+    line-height: 1.2em;
+    /* Reduziert den Zeilenabstand */
 }
 
-#event-modal, #edit-event-modal {
+
+/* Modale Fenster-Styles */
+
+#event-modal,
+#edit-event-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -120,7 +236,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#event-title, #edit-event-title {
+#event-title,
+#edit-event-title {
     width: calc(100% - 22px);
     padding: 10px;
     border-radius: 4px;
@@ -129,7 +246,10 @@ body {
     margin-bottom: 10px;
 }
 
-#event-start-time, #event-end-time, #edit-event-start-time, #edit-event-end-time {
+#event-start-time,
+#event-end-time,
+#edit-event-start-time,
+#edit-event-end-time {
     width: calc(100% - 22px);
     padding: 10px;
     border-radius: 4px;
@@ -138,7 +258,11 @@ body {
     margin-bottom: 10px;
 }
 
-#save-event, #update-event, #delete-event, #cancel-event, #cancel-edit-event {
+#save-event,
+#update-event,
+#delete-event,
+#cancel-event,
+#cancel-edit-event {
     background-color: #007bff;
     color: #ffffff;
     border: none;
@@ -150,8 +274,14 @@ body {
     width: 100%;
 }
 
-#save-event:hover, #update-event:hover, #delete-event:hover, #cancel-event:hover, #cancel-edit-event:hover {
+#save-event:hover,
+#update-event:hover,
+#delete-event:hover,
+#cancel-event:hover,
+#cancel-edit-event:hover {
     background-color: #0056b3;
+    transform: scale(1.1);
+    /* Vergrößert den Button */
 }
 
 #back-button {
@@ -170,4 +300,6 @@ body {
 
 #back-button:hover {
     background-color: #0056b3;
+    transform: scale(1.1);
+    /* Vergrößert den Button */
 }
