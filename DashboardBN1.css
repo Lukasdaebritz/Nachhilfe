@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1976D2; /* Dunkler Blau-Hintergrund */
+    background-color: #e3f2fd; /* Heller Blau-Hintergrund */
 }
 
 header {
@@ -27,26 +27,27 @@ main {
 }
 
 .button-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 Spalten */
-    gap: 20px; /* Abstand zwischen den Boxen */
-    width: 600px; /* Gesamtbreite des Containers */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px; /* Die Breite der Button-Container */
 }
 
 button {
-    background-color: #02223d; /* Blau */
+    background-color: #2196F3; /* Blau */
     color: white;
     border: none;
-    padding: 20px; /* Größere Buttons */
+    padding: 10px 20px;
+    margin: 10px 0;
     cursor: pointer;
-    font-size: 18px; /* Größere Schriftgröße */
-    border-radius: 10px; /* Abgerundete Kanten */
-    width: 100%; /* Die Buttons füllen die Breite der Box */
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%; /* Die Buttons füllen die Breite des Containers */
     text-align: center;
 }
 
 button:hover {
-    background-color: #022549; /* Dunkleres Blau */
+    background-color: #1976D2; /* Dunkleres Blau */
 }
 
 footer {
@@ -65,7 +66,7 @@ footer {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 10px; /* Abgerundete Kanten */
+    border-radius: 5px;
     font-size: 16px;
     width: 150px;
 }

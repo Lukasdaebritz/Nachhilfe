@@ -71,7 +71,7 @@ function attachNoteCellEvents(row) {
 
 function editNote() {
     const noteCell = event.target.closest('.note-cell');
-    const currentNote = noteCell.childNodes[0].nodeValue.trim();
+    const currentNote = noteCell.textContent.trim();
     const newNoteValue = prompt('Geben Sie die neue Note ein (1-6):', currentNote);
 
     if (newNoteValue !== null && newNoteValue >= 1 && newNoteValue <= 6) {
@@ -95,11 +95,11 @@ function saveNotes() {
     document.querySelectorAll('#notesTableBody tr').forEach(row => {
         const klassenarbeitCell = row.querySelector('.note-klassenarbeit');
         const lkCell = row.querySelector('.note-lk');
-        if (klassenarbeitCell && klassenarbeitCell.childNodes[0].nodeValue.trim()) {
-            notes.push({ note: klassenarbeitCell.childNodes[0].nodeValue.trim(), type: 'Klassenarbeit' });
+        if (klassenarbeitCell && klassenarbeitCell.textContent.trim()) {
+            notes.push({ note: klassenarbeitCell.textContent.trim(), type: 'Klassenarbeit' });
         }
-        if (lkCell && lkCell.childNodes[0].nodeValue.trim()) {
-            notes.push({ note: lkCell.childNodes[0].nodeValue.trim(), type: 'LK' });
+        if (lkCell && lkCell.textContent.trim()) {
+            notes.push({ note: lkCell.textContent.trim(), type: 'LK' });
         }
     });
     localStorage.setItem('notesBN1', JSON.stringify(notes));

@@ -7,27 +7,37 @@
     <link rel="stylesheet" href="TerminkalenderBN1.css">
 </head>
 <body>
-    <div id="calendar">
-        <div id="calendarHeader">
-            <button id="backToDashboard">Zurück zum Dashboard</button>
-            <button id="prevMonth">❮</button>
-            <h2 id="currentMonth"></h2>
-            <button id="nextMonth">❯</button>
-        </div>
-        <div id="daysOfWeek"></div>
-        <div id="calendarDays"></div>
+    <div id="calendar-container">
+        <button id="back-button">Zurück zum Dashboard</button>
+        <div id="month-year"></div>
+        <button id="prev-month">&#8249;</button>
+        <button id="next-month">&#8250;</button>
+        <div class="calendar-header"></div>
+        <div class="calendar-body"></div>
     </div>
 
-    <div id="modal" class="modal">
+    <!-- Modal for adding events -->
+    <div id="event-modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
             <h2>Termin hinzufügen</h2>
-            <form id="eventForm">
-                <input type="hidden" id="eventDate">
-                <label for="eventTitle">Titel:</label>
-                <input type="text" id="eventTitle" required>
-                <button type="submit">Speichern</button>
-            </form>
+            <input type="text" id="event-title" placeholder="Termin Titel">
+            <input type="time" id="event-start-time" placeholder="Von">
+            <input type="time" id="event-end-time" placeholder="Bis">
+            <button id="save-event">Hinzufügen</button>
+            <button id="cancel-event">Abbrechen</button>
+        </div>
+    </div>
+
+    <!-- Modal for editing events -->
+    <div id="edit-event-modal">
+        <div class="modal-content">
+            <h2>Termin bearbeiten</h2>
+            <input type="text" id="edit-event-title" placeholder="Neuer Termin Titel">
+            <input type="time" id="edit-event-start-time" placeholder="Von">
+            <input type="time" id="edit-event-end-time" placeholder="Bis">
+            <button id="update-event">Aktualisieren</button>
+            <button id="delete-event">Löschen</button>
+            <button id="cancel-edit-event">Abbrechen</button>
         </div>
     </div>
 

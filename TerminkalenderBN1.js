@@ -1,106 +1,176 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const daysOfWeek = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
-    const daysOfWeekContainer = document.getElementById("daysOfWeek");
-    const calendarDaysContainer = document.getElementById("calendarDays");
-    const currentMonthElement = document.getElementById("currentMonth");
-    const prevMonthButton = document.getElementById("prevMonth");
-    const nextMonthButton = document.getElementById("nextMonth");
-    const backToDashboardButton = document.getElementById("backToDashboard");
-    const modal = document.getElementById("modal");
-    const closeModal = document.getElementsByClassName("close")[0];
-    const eventForm = document.getElementById("eventForm");
-    const eventDateInput = document.getElementById("eventDate");
-    const eventTitleInput = document.getElementById("eventTitle");
+document.addEventListener('DOMContentLoaded', () => {
+    const calendarContainer = document.querySelector('#calendar-container');
+    const monthYearElement = document.querySelector('#month-year');
+    const calendarBody = document.querySelector('.calendar-body');
+    const calendarHeader = document.querySelector('.calendar-header');
+    const prevMonthButton = document.querySelector('#prev-month');
+    const nextMonthButton = document.querySelector('#next-month');
+    const eventModal = document.querySelector('#event-modal');
+    const editEventModal = document.querySelector('#edit-event-modal');
+    const backButton = document.querySelector('#back-button');
+    const eventTitleInput = document.querySelector('#event-title');
+    const eventStartTimeInput = document.querySelector('#event-start-time');
+    const eventEndTimeInput = document.querySelector('#event-end-time');
+    const editEventTitleInput = document.querySelector('#edit-event-title');
+    const editEventStartTimeInput = document.querySelector('#edit-event-start-time');
+    const editEventEndTimeInput = document.querySelector('#edit-event-end-time');
+    const saveEventButton = document.querySelector('#save-event');
+    const updateEventButton = document.querySelector('#update-event');
+    const deleteEventButton = document.querySelector('#delete-event');
+    const cancelEventButton = document.querySelector('#cancel-event');
+    const cancelEditEventButton = document.querySelector('#cancel-edit-event');
 
     let currentDate = new Date();
+    let events = JSON.parse(localStorage.getItem('events')) || {};
+    let currentEditDate = '';
+    let currentEditIndex = -1;
 
-    function updateCalendar() {
-        calendarDaysContainer.innerHTML = "";
-        currentMonthElement.textContent = currentDate.toLocaleString("de-DE", { month: "long", year: "numeric" });
+    const renderCalendar = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDate = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
 
-        const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-        const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-        
-        let startDay = firstDayOfMonth.getDay() - 1;
-        if (startDay < 0) startDay = 6; // Sonntag auf Montag anpassen
+        // Adjust firstDay to start from Monday
+        const adjustedFirstDay = (firstDay + 6) % 7;
 
-        for (let i = 0; i < startDay; i++) {
-            const emptyCell = document.createElement("div");
-            emptyCell.classList.add("date");
-            calendarDaysContainer.appendChild(emptyCell);
+        monthYearElement.textContent = `${currentDate.toLocaleDateString('de-DE', { month: 'long' })} ${year}`;
+
+        calendarHeader.innerHTML = '';
+        calendarBody.innerHTML = '';
+
+        // Wochentage hinzufügen
+        const weekdays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+        weekdays.forEach(day => {
+            const headerDiv = document.createElement('div');
+            headerDiv.textContent = day;
+            calendarHeader.appendChild(headerDiv);
+        });
+
+        // Leere Zellen vor dem ersten Tag des Monats hinzufügen
+        for (let i = 0; i < adjustedFirstDay; i++) {
+            const emptyDiv = document.createElement('div');
+            calendarBody.appendChild(emptyDiv);
         }
 
-        for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
-            const dateElement = document.createElement("div");
-            dateElement.classList.add("date");
-            dateElement.textContent = i;
-            dateElement.addEventListener("click", () => openModal(i));
-            const events = getEventsForDate(currentDate.getFullYear(), currentDate.getMonth(), i);
-            events.forEach(event => {
-                const eventElement = document.createElement("div");
-                eventElement.classList.add("event");
-                eventElement.textContent = event.title;
-                dateElement.appendChild(eventElement);
-            });
-            calendarDaysContainer.appendChild(dateElement);
+        // Zellen für jeden Tag des Monats erstellen
+        for (let day = 1; day <= lastDate; day++) {
+            const dateString = `${year}-${month + 1}-${day}`;
+            const dayDiv = document.createElement('div');
+            dayDiv.textContent = day;
+
+            // Aktuellen Tag hervorheben
+            if (today.toDateString() === new Date(dateString).toDateString()) {
+                dayDiv.classList.add('current-day');
+            }
+
+            // Ereignis-Indikator hinzufügen
+            if (events[dateString]) {
+                events[dateString].forEach(event => {
+                    const eventTitle = document.createElement('div');
+                    eventTitle.textContent = `${event.title} (${event.startTime} - ${event.endTime})`;
+                    eventTitle.classList.add('event-title');
+                    eventTitle.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Verhindert das Öffnen des Modals beim Klicken auf den Termin
+                        openEditEventModal(dateString, event);
+                    });
+                    dayDiv.appendChild(eventTitle);
+                });
+            }
+
+            dayDiv.addEventListener('click', () => openEventModal(dateString));
+            calendarBody.appendChild(dayDiv);
         }
-    }
+    };
 
-    function openModal(day) {
-        modal.style.display = "block";
-        eventDateInput.value = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${day}`;
-    }
+    const openEventModal = (dateString) => {
+        currentEditDate = dateString;
+        eventModal.style.display = 'flex';
+    };
 
-    closeModal.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    const saveEvent = () => {
+        const title = eventTitleInput.value.trim();
+        const startTime = eventStartTimeInput.value.trim();
+        const endTime = eventEndTimeInput.value.trim();
+        if (title && startTime && endTime) {
+            if (!events[currentEditDate]) {
+                events[currentEditDate] = [];
+            }
+            events[currentEditDate].push({ title, startTime, endTime });
+            localStorage.setItem('events', JSON.stringify(events));
+            eventTitleInput.value = '';
+            eventStartTimeInput.value = '';
+            eventEndTimeInput.value = '';
+            eventModal.style.display = 'none';
+            renderCalendar();
         }
-    }
+    };
 
-    eventForm.onsubmit = function(event) {
-        event.preventDefault();
-        const [year, month, day] = eventDateInput.value.split('-');
-        saveEvent(parseInt(year), parseInt(month), parseInt(day), eventTitleInput.value);
-        updateCalendar();
-        modal.style.display = "none";
-        eventTitleInput.value = "";
-    }
+    const openEditEventModal = (dateString, event) => {
+        currentEditDate = dateString;
+        editEventTitleInput.value = event.title;
+        editEventStartTimeInput.value = event.startTime;
+        editEventEndTimeInput.value = event.endTime;
+        currentEditIndex = events[dateString].indexOf(event);
+        editEventModal.style.display = 'flex';
+    };
 
-    function getEventsForDate(year, month, day) {
-        const events = JSON.parse(localStorage.getItem("events")) || [];
-        return events.filter(event => event.year === year && event.month === month && event.day === day);
-    }
+    const updateEvent = () => {
+        const newTitle = editEventTitleInput.value.trim();
+        const newStartTime = editEventStartTimeInput.value.trim();
+        const newEndTime = editEventEndTimeInput.value.trim();
+        if (newTitle && newStartTime && newEndTime) {
+            events[currentEditDate][currentEditIndex] = { title: newTitle, startTime: newStartTime, endTime: newEndTime };
+            localStorage.setItem('events', JSON.stringify(events));
+            editEventTitleInput.value = '';
+            editEventStartTimeInput.value = '';
+            editEventEndTimeInput.value = '';
+            editEventModal.style.display = 'none';
+            renderCalendar();
+        }
+    };
 
-    function saveEvent(year, month, day, title) {
-        const events = JSON.parse(localStorage.getItem("events")) || [];
-        events.push({ year, month, day, title });
-        localStorage.setItem("events", JSON.stringify(events));
-    }
+    const deleteEvent = () => {
+        if (confirm("Möchten Sie diesen Termin löschen?")) {
+            events[currentEditDate].splice(currentEditIndex, 1);
+            if (events[currentEditDate].length === 0) {
+                delete events[currentEditDate];
+            }
+            localStorage.setItem('events', JSON.stringify(events));
+            editEventModal.style.display = 'none';
+            renderCalendar();
+        }
+    };
 
-    daysOfWeek.forEach(day => {
-        let dayElement = document.createElement("div");
-        dayElement.classList.add("day");
-        dayElement.textContent = day;
-        daysOfWeekContainer.appendChild(dayElement);
-    });
+    const closeEventModal = () => {
+        eventModal.style.display = 'none';
+    };
 
-    prevMonthButton.addEventListener("click", () => {
+    const closeEditEventModal = () => {
+        editEventModal.style.display = 'none';
+    };
+
+    prevMonthButton.addEventListener('click', () => {
         currentDate.setMonth(currentDate.getMonth() - 1);
-        updateCalendar();
+        renderCalendar();
     });
 
-    nextMonthButton.addEventListener("click", () => {
+    nextMonthButton.addEventListener('click', () => {
         currentDate.setMonth(currentDate.getMonth() + 1);
-        updateCalendar();
+        renderCalendar();
     });
 
-    backToDashboardButton.addEventListener("click", () => {
+    saveEventButton.addEventListener('click', saveEvent);
+    cancelEventButton.addEventListener('click', closeEventModal);
+    updateEventButton.addEventListener('click', updateEvent);
+    deleteEventButton.addEventListener('click', deleteEvent);
+    cancelEditEventButton.addEventListener('click', closeEditEventModal);
+
+    backButton.addEventListener('click', () => {
         window.location.href = 'DashboardBN1.html';
     });
 
-    updateCalendar();
+    // Initiale Kalenderdarstellung
+    renderCalendar();
 });
