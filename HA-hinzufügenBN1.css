@@ -1,0 +1,181 @@
+/* Allgemeine Schriftgrößenanpassung */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff3e0;
+    /* Hintergrundfarbe im Orange-Stil */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: black;
+    /* Dunkelorange */
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    color: black;
+    /* Dunkelorange */
+    font-size: 32px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+    font-size: 18px;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #424242;
+    /* Dunkelorange */
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+button {
+    background-color: #424242;
+    /* Dunkelgrau */
+    color: white;
+    border: 2px solid white;
+    /* Weißer Rahmen */
+    padding: 15px 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #333333;
+    /* Etwas helleres Dunkelgrau */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#backButton {
+    background-color: #212121;
+    /* Rot für den Zurück-Button */
+    color: white;
+    border: 2px solid white;
+    /* Weißer Rahmen */
+    padding: 15px 30px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#backButton:hover {
+    background-color: #212121;
+    /* Dunkleres Rot beim Hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#homeworkList {
+    margin-top: 20px;
+}
+
+.homework-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    position: relative;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.homework-item a {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.edit-btn,
+.delete-btn {
+    display: none;
+    margin-top: 5px;
+    background-color: #424242;
+    /* Dunkelgrau */
+    color: white;
+    border: 2px solid white;
+    /* Weißer Rahmen */
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #333333;
+    /* Etwas helleres Dunkelgrau */
+}
+
+.homework-item.show-actions .edit-btn,
+.homework-item.show-actions .delete-btn {
+    display: inline-block;
+}
+
+.edit-form {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    background-color: #f5f5f5;
+}
+
+.edit-form input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 2px solid #F57C00;
+    /* Dunkelorange */
+    border-radius: 8px;
+    font-size: 18px;
+}
