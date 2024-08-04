@@ -3,28 +3,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const exerciseList = document.getElementById('exerciseList');
     const backButton = document.getElementById('backButton');
 
+    // Funktion zum Kodieren der Datei in Base64
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+
     // Funktion zum Hinzufügen von Übungsblättern
-    exerciseForm.addEventListener('submit', function(event) {
+    exerciseForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // Verhindert das Standard-Formularverhalten
 
         const title = document.getElementById('exerciseTitle').value;
         const file = document.getElementById('exerciseFile').files[0];
 
         if (title && file) {
-            const fileURL = URL.createObjectURL(file);
-            addExerciseToDOM(title, fileURL, file.name);
+            const fileBase64 = await fileToBase64(file);
+            addExerciseToDOM(title, fileBase64, file.name);
             saveExercises(); // Speichert die Übungsblätter im Local Storage
             exerciseForm.reset();
         }
     });
 
     // Funktion zum Hinzufügen von Übungsblättern zum DOM
-    function addExerciseToDOM(title, fileURL, fileName) {
+    function addExerciseToDOM(title, fileBase64, fileName) {
         const listItem = document.createElement('div');
         listItem.classList.add('exercise-item');
         listItem.innerHTML = `
             <p><strong>${title}</strong></p>
-            <a href="${fileURL}" download="${fileName}">Dokument herunterladen</a>
+            <a href="${fileBase64}" download="${fileName}">Dokument herunterladen</a>
             <button class="edit-btn">Bearbeiten</button>
             <button class="delete-btn">Löschen</button>
             <div class="edit-form">
@@ -68,9 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const exercises = [];
         document.querySelectorAll('.exercise-item').forEach(item => {
             const title = item.querySelector('strong').textContent;
-            const fileURL = item.querySelector('a').getAttribute('href');
+            const fileBase64 = item.querySelector('a').getAttribute('href');
             const fileName = item.querySelector('a').getAttribute('download');
-            exercises.push({ title, fileURL, fileName });
+            exercises.push({ title, fileBase64, fileName });
         });
         localStorage.setItem('exercises', JSON.stringify(exercises));
     }
@@ -79,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadExercises() {
         const exercises = JSON.parse(localStorage.getItem('exercises')) || [];
         exercises.forEach(ex => {
-            addExerciseToDOM(ex.title, ex.fileURL, ex.fileName);
+            addExerciseToDOM(ex.title, ex.fileBase64, ex.fileName);
         });
     }
 

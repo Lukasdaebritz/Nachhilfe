@@ -3,28 +3,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const homeworkList = document.getElementById('homeworkList');
     const backButton = document.getElementById('backButton');
 
+    // Funktion zum Kodieren der Datei in Base64
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+    }
+
     // Funktion zum Hinzufügen von Hausaufgaben
-    homeworkForm.addEventListener('submit', function(event) {
+    homeworkForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // Verhindert das Standard-Formularverhalten
 
         const title = document.getElementById('homeworkTitle').value;
         const file = document.getElementById('homeworkFile').files[0];
 
         if (title && file) {
-            const fileURL = URL.createObjectURL(file);
-            addHomeworkToDOM(title, fileURL, file.name);
+            const fileBase64 = await fileToBase64(file);
+            addHomeworkToDOM(title, fileBase64, file.name);
             saveHomeworks(); // Speichert die Hausaufgaben im Local Storage
             homeworkForm.reset();
         }
     });
 
     // Funktion zum Hinzufügen von Hausaufgaben zum DOM
-    function addHomeworkToDOM(title, fileURL, fileName) {
+    function addHomeworkToDOM(title, fileBase64, fileName) {
         const listItem = document.createElement('div');
         listItem.classList.add('homework-item');
         listItem.innerHTML = `
             <p><strong>${title}</strong></p>
-            <a href="${fileURL}" download="${fileName}">Dokument herunterladen</a>
+            <a href="${fileBase64}" download="${fileName}">Dokument herunterladen</a>
             <button class="edit-btn">Bearbeiten</button>
             <button class="delete-btn">Löschen</button>
             <div class="edit-form">
@@ -68,9 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const homeworks = [];
         document.querySelectorAll('.homework-item').forEach(item => {
             const title = item.querySelector('strong').textContent;
-            const fileURL = item.querySelector('a').getAttribute('href');
+            const fileBase64 = item.querySelector('a').getAttribute('href');
             const fileName = item.querySelector('a').getAttribute('download');
-            homeworks.push({ title, fileURL, fileName });
+            homeworks.push({ title, fileBase64, fileName });
         });
         localStorage.setItem('homeworks', JSON.stringify(homeworks));
     }
@@ -79,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadHomeworks() {
         const homeworks = JSON.parse(localStorage.getItem('homeworks')) || [];
         homeworks.forEach(hw => {
-            addHomeworkToDOM(hw.title, hw.fileURL, hw.fileName);
+            addHomeworkToDOM(hw.title, hw.fileBase64, hw.fileName);
         });
     }
 
