@@ -103,20 +103,29 @@ button:active {
     margin-top: 20px;
 }
 
-.homework-item {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    position: relative;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Stil für die kleinere Download-Schaltfläche */
+.homework-item a {
+    display: inline-block; /* Ändert die Anzeige zu inline-block */
+    margin: 5px 0;
+    padding: 5px 10px;
+    background-color: #424242; /* Dunkelgrau */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid white; /* Weißer Rahmen */
+    border-radius: 8px; /* Abgerundete Ecken */
+    font-size: 14px; /* Kleinere Schriftgröße */
+    width: 150px; /* Festgelegte Breite */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.homework-item a {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 18px;
+.homework-item a:hover {
+    background-color: #333333; /* Etwas helleres Dunkelgrau */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Kleinere Schatten */
+}
+
+.homework-item a:active {
+    transform: scale(0.98);
 }
 
 .download-btn,
