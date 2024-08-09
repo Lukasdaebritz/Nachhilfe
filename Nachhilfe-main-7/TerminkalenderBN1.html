@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminkalender</title>
+    <link rel="stylesheet" href="TerminkalenderBN1.css">
+</head>
+<body>
+    <div id="calendar-container">
+        <button id="back-button">Zurück zum Dashboard</button>
+        <div id="month-year"></div>
+        <button id="prev-month">&#8249;</button>
+        <button id="next-month">&#8250;</button>
+        <div class="calendar-header"></div>
+        <div class="calendar-body"></div>
+    </div>
+
+    <!-- Modal for adding events -->
+    <div id="event-modal">
+        <div class="modal-content">
+            <h2>Termin hinzufügen</h2>
+            <input type="text" id="event-title" placeholder="Termin Titel" required>
+            <input type="time" id="event-start-time" placeholder="Von (optional)">
+            <input type="time" id="event-end-time" placeholder="Bis (optional)">
+            <button id="save-event">Hinzufügen</button>
+            <button id="cancel-event">Abbrechen</button>
+        </div>
+    </div>
+
+    <!-- Modal for editing events -->
+    <div id="edit-event-modal">
+        <div class="modal-content">
+            <h2>Termin bearbeiten</h2>
+            <input type="text" id="edit-event-title" placeholder="Neuer Termin Titel" required>
+            <input type="time" id="edit-event-start-time" placeholder="Von (optional)">
+            <input type="time" id="edit-event-end-time" placeholder="Bis (optional)">
+            <button id="update-event">Aktualisieren</button>
+            <button id="delete-event">Löschen</button>
+            <button id="cancel-edit-event">Abbrechen</button>
+        </div>
+    </div>
+
+    <script src="TerminkalenderBN1.js"></script>
+</body>
+</html>

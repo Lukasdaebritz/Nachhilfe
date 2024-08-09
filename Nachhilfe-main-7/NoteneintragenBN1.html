@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="NoteneintragenBN1.css">
+    <title>Noten Eintragen</title>
+</head>
+<body>
+    <h1>Noten Eintragen</h1>
+    <div>
+        <label for="noteValue">Note (1-6):</label>
+        <input type="number" id="noteValue" min="1" max="6">
+        <label for="noteType">Typ:</label>
+        <select id="noteType">
+            <option value="Klassenarbeit">Klassenarbeit</option>
+            <option value="LK">LK</option>
+        </select>
+        <button id="saveNoteButton">Note hinzufügen</button>
+    </div>
+    <table id="notesTable">
+        <thead>
+            <tr>
+                <th>Klassenarbeit</th>
+                <th>LK</th>
+            </tr>
+        </thead>
+        <tbody id="notesTableBody"></tbody>
+    </table>
+    <p id="averageKlassenarbeit">Durchschnitt Klassenarbeit: --</p>
+    <p id="averageLK">Durchschnitt LK: --</p>
+    <button id="clearNotesButton">Alle Noten löschen</button>
+    <button id="backButton">Zurück</button>
+    <script src="NoteneintragenBN1.js"></script>
+</body>
+</html>

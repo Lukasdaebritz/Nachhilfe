@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff3e0;
+    /* Hellgrauer Hintergrund */
+}
+
+header {
+    background-color: #FF9800;
+    /* Orange für den Header */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 2px solid #FF9800;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+    padding: 20px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+button {
+    background-color: #424242;
+    /* Noch dunkleres Grau */
+    color: white;
+    border: 2px solid white;
+    padding: 15px 30px;
+    margin: 15px 0;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    width: 45%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Leichter Schatten */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #212121;
+    /* Noch dunkleres Grau beim Hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /* Intensiveren Schatten beim Hover */
+}
+
+footer {
+    background-color: #FF9800;
+    /* Orange für den Footer */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-top: 2px solid #FF9800;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#logout {
+    background-color: #424242;
+    /* Noch dunkleres Grau für Logout-Button */
+    color: white;
+    border: none;
+    /* Kein Rahmen */
+    padding: 15px 30px;
+    cursor: pointer;
+    border-radius: 8px;
+    /* Abgerundete Ecken */
+    font-size: 18px;
+    width: 200px;
+    /* Festbreite für Konsistenz */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Leichter Schatten */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+    /* Abstand vom oberen Inhalt */
+}
+
+#logout:hover {
+    background-color: #212121;
+    /* Noch dunkleres Grau beim Hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /* Intensiveren Schatten beim Hover */
+}
+
+
+/* Animationsstile hinzufügen */
+
+.button-container button {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.button-container button {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+#noteneintragen {
+    animation-delay: 0.1s;
+}
+
+#terminkalender {
+    animation-delay: 0.3s;
+}

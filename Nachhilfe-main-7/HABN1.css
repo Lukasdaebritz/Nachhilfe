@@ -1,0 +1,208 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    /* Box breiter machen */
+    max-height: 80vh;
+    /* Maximale Höhe für die Box */
+    overflow-y: auto;
+    /* Scrollbalken hinzufügen, wenn Inhalt größer als Container */
+    position: relative;
+    /* Für zukünftige Positionierung und Styling */
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-theme {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#themeInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#addThemeButton {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#addThemeButton:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    max-height: 300px;
+    /* Höhe für die Themenliste beschränken */
+    overflow-y: auto;
+    /* Scrollbalken hinzufügen, wenn Inhalt größer als Container */
+}
+
+ul li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+ul li span {
+    flex: 1;
+    font-weight: bold;
+}
+
+.file-list {
+    margin-top: 10px;
+    padding: 0;
+    max-height: 200px;
+    /* Höhe des Containers auf 200px beschränken */
+    overflow-y: auto;
+    /* Scrollbalken hinzufügen, wenn Inhalt größer als Container */
+}
+
+ul li .file-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+ul li .file-list li {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    /* Hintergrundfarbe standardmäßig transparent */
+    position: relative;
+    transition: background-color 0.3s ease;
+    /* sanfter Übergang für die Hintergrundfarbe */
+    min-width: 150px;
+    /* Feste Breite für die Datei-Box */
+    height: auto;
+    /* Höhe passt sich dem Inhalt an */
+}
+
+.file-list li:hover {
+    background-color: #d1d8e0;
+    /* Hintergrundfarbe bei Hover für die Datei-Box */
+}
+
+.file-list li .file-buttons {
+    display: none;
+    /* Buttons standardmäßig verstecken */
+    gap: 10px;
+    position: absolute;
+    right: 10px;
+    /* Buttons rechts innerhalb der Box positioniert */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.file-buttons button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 6px;
+    /* Kleinere Buttons */
+    cursor: pointer;
+}
+
+.file-buttons button:hover {
+    background-color: #5a6268;
+}
+
+.file-list li:hover .file-buttons {
+    /* Buttons beim Hovern anzeigen */
+    display: flex;
+}
+
+ul li button {
+    display: none;
+    /* Buttons standardmäßig verstecken */
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+ul li button.edit-button {
+    background-color: #ffc107;
+}
+
+ul li button:hover {
+    background-color: #c82333;
+}
+
+ul li button.edit-button:hover {
+    background-color: #e0a800;
+}
+
+ul li:hover button {
+    /* Buttons beim Hovern anzeigen */
+    display: inline-block;
+}
+
+ul li .button-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+}

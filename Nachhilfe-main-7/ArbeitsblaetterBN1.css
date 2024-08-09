@@ -1,0 +1,170 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#back-button {
+    background-color: #007bff;
+    margin-bottom: 20px;
+}
+
+#back-button:hover {
+    background-color: #0056b3;
+}
+
+#back-button:active {
+    transform: scale(0.95);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background: #f9f9f9;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+}
+
+li:hover {
+    background-color: #e9ecef;
+}
+
+li:hover .actions {
+    display: flex;
+}
+
+.actions {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+}
+
+.actions button {
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    background-color: #fff;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.actions button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.actions button:active {
+    transform: scale(0.95);
+}
+
+.file-input {
+    margin-top: 10px;
+}
+
+.file-list {
+    margin-top: 10px;
+}
+
+.file-item {
+    position: relative;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    transition: background 0.3s;
+}
+
+.file-item:hover {
+    background-color: #e9ecef;
+}
+
+.file-item:hover .file-actions {
+    display: flex;
+}
+
+.file-actions {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    gap: 5px;
+}
+
+.file-actions button {
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    background-color: #fff;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.file-actions button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.file-actions button:active {
+    transform: scale(0.95);
+}

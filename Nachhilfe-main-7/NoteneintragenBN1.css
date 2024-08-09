@@ -1,0 +1,112 @@
+/* Allgemeine Schriftgrößenanpassung */
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #fff3e0;
+}
+
+h1 {
+    margin: 20px 0;
+    color: #FF9800;
+    font-size: 32px;
+    /* Größere Schriftgröße für die Hauptüberschrift */
+}
+
+label {
+    margin-right: 10px;
+    color: #333;
+    font-size: 18px;
+    /* Größere Schriftgröße für Labels */
+}
+
+input,
+select {
+    margin-right: 10px;
+    padding: 8px;
+    border: 2px solid #424242;
+    border-radius: 8px;
+    font-size: 16px;
+    /* Größere Schriftgröße für Eingabefelder */
+}
+
+button {
+    margin: 10px;
+    padding: 12px 24px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background-color: #424242;
+    color: white;
+    font-size: 18px;
+    /* Größere Schriftgröße für Buttons */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #212121;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+    /* Kompaktere Schriftgröße für Tabellenzellen */
+}
+
+th {
+    background-color: #FFE0B2;
+    font-weight: bold;
+    font-size: 18px;
+    /* Größere Schriftgröße für Tabellenkopf */
+    font-family: 'Arial', sans-serif;
+}
+
+#averageKlassenarbeit,
+#averageLK {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;
+    /* Konsistente Schriftgröße mit den Labels */
+}
+
+
+/* CSS für das Anzeigen der Notenaktionen */
+
+.note-actions {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.note-cell {
+    position: relative;
+}
+
+.note-cell:hover .note-actions {
+    display: block;
+}
