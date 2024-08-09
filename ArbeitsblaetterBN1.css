@@ -1,0 +1,218 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff3e0; /* Hellgrauer Hintergrund */
+}
+
+header {
+    background-color: #FF9800; /* Orange für den Header */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 2px solid #FF9800;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #424242; /* Noch dunkleres Grau */
+    color: white;
+    border: 2px solid white;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px; /* Abgerundete Ecken */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+button:hover {
+    background-color: #212121; /* Noch dunkleres Grau beim Hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Intensiveren Schatten beim Hover */
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#back-button {
+    background-color: #FF9800; /* Orange für den Zurück-Button */
+    color: white;
+    margin-bottom: 20px;
+    width: auto; /* Breite automatisch */
+}
+
+#back-button:hover {
+    background-color: #e68900; /* Etwas helleres Orange beim Hover */
+}
+
+#back-button:active {
+    transform: scale(0.95);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background: #f9f9f9;
+    border-radius: 8px; /* Abgerundete Ecken */
+    margin-bottom: 10px;
+    transition: background 0.3s;
+}
+
+li:hover {
+    background-color: #ffe0b2; /* Leicht orange beim Hover */
+}
+
+li.selected {
+    background-color: #ffe0b2; /* Leicht orange für das ausgewählte Thema */
+}
+
+li:hover .actions {
+    display: flex;
+}
+
+.actions {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+}
+
+.actions button {
+    padding: 5px 10px;
+    border: 1px solid #FF9800; /* Orange für den Rahmen */
+    background-color: #fff;
+    color: #FF9800;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.actions button:hover {
+    background-color: #FF9800;
+    color: #fff;
+}
+
+.actions button:active {
+    transform: scale(0.95);
+}
+
+.file-input {
+    margin-top: 10px;
+}
+
+.file-list {
+    margin-top: 10px;
+}
+
+.file-item {
+    position: relative;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+    transition: background 0.3s;
+}
+
+.file-item:hover {
+    background-color: #ffe0b2; /* Leicht orange beim Hover */
+}
+
+.file-item:hover .file-actions {
+    display: flex;
+}
+
+.file-actions {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    gap: 5px;
+}
+
+.file-actions button {
+    padding: 5px 10px;
+    border: 1px solid #FF9800; /* Orange für den Rahmen */
+    background-color: #fff;
+    color: #FF9800;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.file-actions button:hover {
+    background-color: #FF9800;
+    color: #fff;
+}
+
+.file-actions button:active {
+    transform: scale(0.95);
+}
+
+/* Animationsstile hinzufügen */
+.button-container button {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.button-container button {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+#noteneintragen {
+    animation-delay: 0.1s;
+}
+
+#terminkalender {
+    animation-delay: 0.3s;
+}

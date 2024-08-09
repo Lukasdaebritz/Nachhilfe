@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Button-Elemente auswählen
     const noteneintragenButton = document.getElementById('noteneintragen');
-    const uebungsblaetterButton = document.getElementById('uebungsblaetter');
-    const haHinzufuegenButton = document.getElementById('ha-hinzufuegen');
+    const arbeitsblaetterButton = document.getElementById('arbeitsblaetter');
     const terminkalenderButton = document.getElementById('terminkalender');
+    const haHinzufuegenButton = document.getElementById('ha-hinzufuegen'); // ID geändert
     const logoutButton = document.getElementById('logout');
 
     // Event-Listener für Noten eintragen Button
@@ -11,19 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'NoteneintragenBN1.html';
     });
 
-    // Event-Listener für Übungsblätter Button
-    uebungsblaetterButton.addEventListener('click', () => {
-        window.location.href = 'ÜbungsblätterBN1.html';
-    });
-
-    // Event-Listener für HA hinzufügen Button
-    haHinzufuegenButton.addEventListener('click', () => {
-        window.location.href = 'HA-hinzufügenBN1.html';
+    // Event-Listener für Arbeitsblätter Button
+    arbeitsblaetterButton.addEventListener('click', () => {
+        window.location.href = 'ArbeitsblaetterBN1.html'; // Weiterleitung zur Arbeitsblätter-Seite
     });
 
     // Event-Listener für Terminkalender Button
     terminkalenderButton.addEventListener('click', () => {
         window.location.href = 'TerminkalenderBN1.html';
+    });
+
+    // Event-Listener für HA hinzufügen Button
+    haHinzufuegenButton.addEventListener('click', () => {
+        window.location.href = 'HABN1.html'; // Weiterleitung zur HABN1-Seite
     });
 
     // Event-Listener für Abmelden Button
